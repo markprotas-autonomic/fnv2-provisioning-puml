@@ -3,7 +3,8 @@ autonumber
 
 title FNV2 Provisioning
 
-participant "MQTT Ingest" as mi
+participant "MQTT Provisioning" as mp
+participant "MQTT Provisioning Ingest" as mi
 participant "FTCP Ingest" as fi
 participant "FTCP Decrypter" as fd
 participant "Module Registration Processor (MoRP)" as mo
@@ -13,8 +14,13 @@ participant "IAM" as iam
 participant "CMS" as cms
 participant "MQTT Outbound" as mqo
 
+mp -> mi: Incoming MQTT Provisioning Message
 mi -> fi: Produce to provisioning-feed-ingest
 fi -> fd: Produce to ftcp-ingest-provision
 fd -> mo: Produce to ftcp-ingest-processed-provision
-mo -> wpe: Vehicle Registration Event
+mo -> wpe ++: Vehicle Registration Event
+wpe -> assets: Register Vehicle
+wpe -> assets: Create Device Binding
+wpe -> iam: Create Permission
+return Workflow Success Event
 @enduml
