@@ -1,0 +1,6 @@
+@startuml
+"MQTT Ingest" -> "FTCP Ingest": Produce to provisioning-feed-ingest
+"FTCP Ingest" -> "FTCP Decrypter": Produce to ftcp-ingest-provision
+"FTCP Decrypter" -> "Module Registration Processor (MoRP)": Produce to ftcp-ingest-provision-processed
+"Module Registration Processor (MoRP)" -> "Workflow Processing Engine": Produce to ftcp-ingest-provision-processed
+@enduml
