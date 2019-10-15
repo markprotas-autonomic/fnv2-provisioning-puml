@@ -15,9 +15,9 @@ participant "CMS" as cms
 participant "MQTT Outbound" as mqo
 
 mp -> mi: Incoming MQTT Provisioning Message
-mi -> fi: Produce to provisioning-feed-ingest
-fi -> fd: Produce to ftcp-ingest-provision
-fd -> mo: Produce to ftcp-ingest-processed-provision
+mi ->> fi: Produce to provisioning-feed-ingest
+fi ->> fd: Produce to ftcp-ingest-provision
+fd ->> mo: Produce to ftcp-ingest-processed-provision
 mo -> wpe ++: Vehicle Registration Event
 wpe -> assets: Register Vehicle
 wpe -> assets: Create Device Binding
