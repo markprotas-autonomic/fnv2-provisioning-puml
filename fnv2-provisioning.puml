@@ -13,14 +13,19 @@ participant "Assets" as assets
 participant "IAM" as iam
 participant "CMS" as cms
 participant "MQTT Outbound" as mqo
+participant "Cloud to FTCP Converter" as ctftcp
+participant "CMS" as cms
 
 mp -> mi: Incoming MQTT Provisioning Message
 mi ->> fi: Produce to provisioning-feed-ingest
 fi ->> fd: Produce to ftcp-ingest-provision
 fd ->> mo: Produce to ftcp-ingest-processed-provision
-mo -> wpe ++: Vehicle Registration Event
-wpe -> assets: Register Vehicle
-wpe -> assets: Create Device Binding
-wpe -> iam: Create Permission
+mo ->> wpe ++: Vehicle Registration Event
+wpe -> assets: Upsert Vehicle
+wpe -> assets: Bind Device to Vehicle
+wpe -> assets: Update Asset Tags
+wpe -> iam: Add Vehicle Permissions
 return Workflow Success Event
+mo -> ctftcp: Send Provisioning Alert Response
+mo -> cms: Send CHURL Command
 @enduml
