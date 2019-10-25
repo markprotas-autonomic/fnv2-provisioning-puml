@@ -1,0 +1,9 @@
+@startuml
+hide empty description
+
+[*] --> FACTORY
+FACTORY -- UNPROVISIONED: Ignition On
+UNPROVISIONED --> WAITING_FOR_PROVISIONING_ACK: ProvisioningAlert Sent
+WAITING_FOR_PROVISIONING_ACK --> 
+
+@enduml
