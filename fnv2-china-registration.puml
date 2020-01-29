@@ -1,0 +1,30 @@
+@startuml
+autonumber
+
+
+title FNV2 China Device Registration
+
+participant "Device Registration Regionalizer" as drr
+participant "Assets Service" as assets
+participant "MQTT Credentials Manager" as credman
+participant "SyncP Service" as syncp
+participant "IAM" as iam
+participant "Inventory API" as inv
+
+[-> drr: Device Registered
+
+drr -> assets ++: RetrieveAsset
+return AssetMetadata
+
+drr -> credman ++: ExportMqttCredentials 
+return MqttCredentials
+
+drr -> syncp ++: ExportSyncPKeys
+return WrappedSyncPKeys
+
+drr -> iam ++: ExportDevicePermissions
+return DevicePermissions
+
+drr -> inv ++: RegisterDevice
+return DeviceRegistrationResponse
+@enduml
