@@ -8,7 +8,6 @@ participant "Device Registration Regionalizer" as drr
 participant "Assets Service" as assets
 participant "MQTT Credentials Manager" as credman
 participant "SyncP Service" as syncp
-participant "IAM" as iam
 participant "Inventory API" as inv
 
 [-> drr: Device Registered
@@ -21,9 +20,6 @@ return MqttCredentials
 
 drr -> syncp ++: ExportSyncPKeys
 return WrappedSyncPKeys
-
-drr -> iam ++: ExportDevicePermissions
-return DevicePermissions
 
 drr -> inv ++: RegisterDevice
 return DeviceRegistrationResponse
