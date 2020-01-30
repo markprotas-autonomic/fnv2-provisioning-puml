@@ -4,11 +4,11 @@ autonumber
 
 title FNV2 China Device Registration
 
-participant "Device Registration Regionalizer" as drr
-participant "Assets Service" as assets
-participant "MQTT Credentials Manager" as credman
-participant "SyncP Service" as syncp
-participant "Inventory API" as inv
+participant "Device Registration Regionalizer NA" as drr
+participant "Assets Service NA" as assets
+participant "MQTT Credentials Manager NA" as credman
+participant "SyncP Service NA" as syncp
+participant "Inventory API CN" as inv
 
 [-> drr: Device Registered
 
